@@ -14,12 +14,13 @@
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">    
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">          
         <title>Taller ProyectoSW</title>
     </head>
     <body>
+        <br>
         <div class="limiter">
-            <div class="container-login100" style="background: linear-gradient(-135deg, #61bbe6, #2064a2);">
+            <div class="container-login100">
                 <div class="wrap-login100">
                     <div class="login100-pic js-tilt" data-tilt>
                         <img src="Imagenes/img-01.png" alt="IMG">
@@ -47,7 +48,7 @@
                         </div>
 
                         <div class="container-login100-form-btn">
-                            <button class="login100-form-btn" name="action" value="Sign In" style="background: #3f25c3;">
+                            <button class="login100-form-btn" name="action" value="Sign In">
                                 Ingresar
                             </button>
                         </div>
@@ -71,7 +72,7 @@
                 </div>
             </div>
         </div>
-
+ <br>
         	
         <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
         <script src="js/popper.js"></script>

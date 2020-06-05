@@ -6,6 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../Layout/header.jsp" />
-<h1>Procesos Juridicos</h1>
-
+<br>
+<jsp:include page="TableProceso.jsp" />
 <jsp:include page="../Layout/footer.jsp" />

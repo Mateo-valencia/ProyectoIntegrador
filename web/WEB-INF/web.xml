@@ -8,6 +8,18 @@
         <servlet-name>RegisterUser</servlet-name>
         <servlet-class>Servlets.RegisterUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewProcessServlet</servlet-name>
+        <servlet-class>Servlets.NewProcessServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeguimientoServlet</servlet-name>
+        <servlet-class>Servlets.SeguimientoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NuevoSeguimientoServlet</servlet-name>
+        <servlet-class>Servlets.NuevoSeguimientoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletMain</servlet-name>
         <url-pattern>/ServletMain</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
         <url-pattern>/RegisterUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewProcessServlet</servlet-name>
+        <url-pattern>/NewProcessServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeguimientoServlet</servlet-name>
+        <url-pattern>/SeguimientoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NuevoSeguimientoServlet</servlet-name>
+        <url-pattern>/NuevoSeguimientoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

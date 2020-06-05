@@ -5,22 +5,21 @@
  */
 package Servlets;
 
+import Code.DbConnect;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Code.DbConnect;
-import Model.Usuario;
-import java.sql.SQLException;
-import javax.servlet.annotation.WebServlet;
+import Model.ProcesoJuridico;
+import static java.lang.System.out;
 /**
  *
- * @author USER
+ * @author Mateo
  */
-@WebServlet(name = "RegisterUserServlet", urlPatterns = {"/RegisterUserServlet"})
-public class RegisterUserServlet extends HttpServlet {
+public class NewProcessServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,25 +32,31 @@ public class RegisterUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre,apellido,correo,login,contrasena,tipo;
-        int telefono;
+        String causa,tipo,abogado,seguimiento,contacto,correo,direccion,juzgado,ubicacionjuzgado;
+        int factura,telefono;
         
         DbConnect db = new DbConnect();
-        nombre = request.getParameter("TxtNombre");
-        apellido = request.getParameter("TxtApellido");
-        telefono = Integer.parseInt(request.getParameter("IntTelefono"));
-        correo = request.getParameter("TxtCorreo");
-        login = request.getParameter("TxtLogin");
-        contrasena = request.getParameter("TxtContrasena");
-        tipo = request.getParameter("TxtTipo");
+        factura = Integer.parseInt(request.getParameter("factura"));
+        causa = request.getParameter("causa");
+        tipo = request.getParameter("tipo");
+        abogado = request.getParameter("abogado");
+        contacto = request.getParameter("contacto");
+        telefono = Integer.parseInt(request.getParameter("telefono"));
+        correo = request.getParameter("correo");
+        direccion = request.getParameter("direccion");
+        seguimiento = request.getParameter("seguimiento");
+        juzgado = request.getParameter("nombrejuzgado");
+        ubicacionjuzgado = request.getParameter("ubicacionjuzgado");
         
-        try{
-            Usuario u = new Usuario();
-            u.Usuario(login, apellido, contrasena, correo, nombre, tipo, telefono,false);
-        }
-        catch(SQLException e){           
-            response.sendRedirect("View/Usuario/CrearUsuario.jsp");
-        }
+            ProcesoJuridico p = new ProcesoJuridico();
+            
+            try {
+                String mensaje = p.NewProcesoJuridico(causa, tipo, factura, abogado, contacto, telefono, correo, direccion,juzgado,ubicacionjuzgado); 
+                request.setAttribute("mensaje", mensaje);
+                request.getRequestDispatcher("View/mensaje.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.getMessage();
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

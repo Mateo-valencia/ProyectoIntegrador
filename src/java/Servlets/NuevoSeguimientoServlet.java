@@ -5,22 +5,21 @@
  */
 package Servlets;
 
+import Code.DbConnect;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Code.DbConnect;
-import Model.Usuario;
-import java.sql.SQLException;
-import javax.servlet.annotation.WebServlet;
+import Model.Seguimiento;
+
 /**
  *
- * @author USER
+ * @author Mateo
  */
-@WebServlet(name = "RegisterUserServlet", urlPatterns = {"/RegisterUserServlet"})
-public class RegisterUserServlet extends HttpServlet {
+public class NuevoSeguimientoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,24 +32,21 @@ public class RegisterUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre,apellido,correo,login,contrasena,tipo;
-        int telefono;
-        
         DbConnect db = new DbConnect();
-        nombre = request.getParameter("TxtNombre");
-        apellido = request.getParameter("TxtApellido");
-        telefono = Integer.parseInt(request.getParameter("IntTelefono"));
-        correo = request.getParameter("TxtCorreo");
-        login = request.getParameter("TxtLogin");
-        contrasena = request.getParameter("TxtContrasena");
-        tipo = request.getParameter("TxtTipo");
+        String Resultado, descripcion;
+        int nroproceso;
         
-        try{
-            Usuario u = new Usuario();
-            u.Usuario(login, apellido, contrasena, correo, nombre, tipo, telefono,false);
-        }
-        catch(SQLException e){           
-            response.sendRedirect("View/Usuario/CrearUsuario.jsp");
+        Resultado = request.getParameter("resultado");
+        descripcion =  request.getParameter("descripcion");
+        nroproceso = Integer.parseInt(request.getParameter("IntTelefono"));
+        
+        Seguimiento s = new Seguimiento();
+        try {
+            String mensaje = s.Seguimiento(nroproceso, Resultado, descripcion);       
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("View/mensaje.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
 
