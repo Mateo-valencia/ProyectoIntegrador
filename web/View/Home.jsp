@@ -1,16 +1,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     
 <jsp:include page="Layout/header.jsp" /> 
-<%
-    if (true) {
-            
+
+<% 
+    String tipo = "";
+    try {
+           tipo = session.getAttribute("tipo").toString();
+        } catch (Exception e) {
+            out.println(e.getMessage());
         }
+    
 %>
 <br>
 <div class="card-deck">
     <div class="row">
         <div class="col-md-3 col-lg-3 card border-light">
-            <a href="Cliente/indexcl.jsp">
+            <a <%if(tipo.equals("Asesor")){%>href="#" onclick="NoPermiso()"<%}else{%>href="Cliente/indexcl.jsp"<%}%>>
                 <img src="../Imagenes/clientes.png" style="margin-inline-start: 5%;" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
@@ -20,7 +25,7 @@
         </div>
         <div class="col-md-1 col-lg-1"></div>
         <div class="col-md-3 col-lg-3 card border-light">
-            <a href="Cliente/indexcl.jsp">
+            <a <%if(tipo.equals("Empleado cartera")){%>href="#" onclick="NoPermiso()"<%}else{%>href="Cita/indexc.jsp"<%}%>>
                 <img src="../Imagenes/cita.png" style="margin-inline-start: 5%;" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
@@ -30,7 +35,7 @@
         </div>
         <div class="col-md-1 col-lg-1"></div>
         <div class="col-md-3 col-lg-3 card border-light">
-            <a href="Cliente/indexcl.jsp">
+            <a  <%if(tipo.equals("Asesor")){%>href="#" onclick="NoPermiso()"<%}else{%>href="Reporte/indexr.jsp"<%}%>>
                 <img src="../Imagenes/reporte.png" style="margin-inline-start: 5%;" class="card-img-top" alt="..."> 
             </a>
             <div class="card-body">

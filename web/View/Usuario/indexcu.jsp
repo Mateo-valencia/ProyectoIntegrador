@@ -1,8 +1,12 @@
+<%-- 
+    Document   : indexr
+    Created on : 22/09/2019, 12:11:19 PM
+    Author     : Jojansantia
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../Layout/header.jsp" />
-<br>
-<jsp:include page="TableProceso.jsp" />
-
+<jsp:include page="Listadousuarios.jsp" />
 <jsp:include page="../Layout/footer.jsp" />
 
 <%
@@ -16,13 +20,12 @@
     if(msg == "correcto"){
         
      %>
-     <script type="text/javascript">InsertarCorrectamentePJ();</script>
+     <script type="text/javascript">InsertarCorrectamenteU();</script>
 <%   
-    }else if(msg == "correcto2"){
-        %>
-     <script type="text/javascript">InsertarCorrectamenteS();</script>
-<% 
-}
+    }
+
     session.setAttribute("respuesta","incorrecto");
 
 %>
+
+

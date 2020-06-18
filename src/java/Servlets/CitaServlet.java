@@ -5,21 +5,19 @@
  */
 package Servlets;
 
-import Code.DbConnect;
+import Model.Citas;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Model.ProcesoJuridico;
-import static java.lang.System.out;
+
 /**
  *
- * @author Mateo
+ * @author Jojansantia
  */
-public class NewProcessServlet extends HttpServlet {
+public class CitaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,33 +28,43 @@ public class NewProcessServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void GuardarCita(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String causa,tipo,abogado,seguimiento,contacto,correo,direccion,juzgado,ubicacionjuzgado,telefono;
-        int factura;
-        
-        DbConnect db = new DbConnect();
-        factura = Integer.parseInt(request.getParameter("factura"));
-        causa = request.getParameter("causa");
-        tipo = request.getParameter("tipo");
-        abogado = request.getParameter("abogado");
-        contacto = request.getParameter("contacto");
-        telefono = request.getParameter("telefono");
-        correo = request.getParameter("correo");
-        direccion = request.getParameter("direccion");
-        seguimiento = request.getParameter("seguimiento");
-        juzgado = request.getParameter("nombrejuzgado");
-        ubicacionjuzgado = request.getParameter("ubicacionjuzgado");
-        
-            ProcesoJuridico p = new ProcesoJuridico();
+            
+            Citas c = new Citas();
+            int opc = Integer.parseInt(request.getParameter("opc"));
+        if (opc == 1) {
+            int IdUsuario = Integer.parseInt(request.getParameter("IdUsuario"));
+            int IdCliente = Integer.parseInt(request.getParameter("IdCliente"));
+            String fecha = request.getParameter("fecha");
+            String Descripcion = request.getParameter("Descripcion");
+            String Objetivo = request.getParameter("Objetivo");
+            String telefono = request.getParameter("telefono");
+            String correo = request.getParameter("correo");
+            String estadocita = request.getParameter("estadocita");
             
             try {
-                String mensaje = p.NewProcesoJuridico(causa, tipo, factura, abogado, contacto, telefono, correo, direccion,juzgado,ubicacionjuzgado); 
-                request.getSession().setAttribute("respuesta", "correcto");
-                request.getRequestDispatcher("View/ProcesoJuridico/indexpj.jsp").forward(request, response);
+                String mensaje = c.guardar(IdCliente, IdUsuario, fecha, Descripcion, Objetivo, estadocita, telefono, correo);
+
+                request.getSession().setAttribute("respuesta", "correcto1");
+                request.getRequestDispatcher("View/Cita/indexc.jsp").forward(request, response);
             } catch (Exception e) {
                 e.getMessage();
             }
+        } else if (opc == 2) {
+            int IdCita = Integer.parseInt(request.getParameter("IdCita"));
+            String estadocita = request.getParameter("estadocita");
+            try {
+                String mensaje = c.modificarEstado(IdCita, estadocita);
+
+                request.getSession().setAttribute("respuesta", "correcto2");
+                request.getRequestDispatcher("View/Cita/indexc.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.getMessage();
+            }
+            
+            //response.sendRedirect("http://localhost:8080/ProyectoConstruccion/View/Cita/indexc.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,7 +79,7 @@ public class NewProcessServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        GuardarCita(request, response);
     }
 
     /**
@@ -85,7 +93,7 @@ public class NewProcessServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        GuardarCita(request, response);
     }
 
     /**
