@@ -91,9 +91,9 @@ public class Citas {
     }
     }
     
-    public String modificarEstado(int intCita, String estado) throws SQLException{
+    public String modificarEstado(int intCita, String estado, String descripcion) throws SQLException{
         try {    
-        db.DB().executeQuery("UPDATE CITAS SET NVARCHAR_RESULTADO = '"+estado+"' WHERE INT_ID_CITAS ='"+intCita+"'");
+        db.DB().executeQuery("UPDATE CITAS SET NVARCHAR_RESULTADO = '"+estado+"', NVARCHAR_DESCRIPCION = '"+descripcion+"' WHERE INT_ID_CITAS ='"+intCita+"'");
             return "succes";
         }catch (Exception e) { 
               return e.getMessage();

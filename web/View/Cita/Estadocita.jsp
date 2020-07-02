@@ -64,6 +64,12 @@
             </select>
         </div>
     </div>
+        
+        <div class="form-group ">
+        <label for="causa">Descripcion: </label>
+        <textarea type="text" class="form-control" id="descripcion" rows="5" aria-describedby="descripcion" placeholder="Nueva descripcion de la cita" name="descripcion"> </textarea>       
+    </div>
+        
     <div class="text-center" class="btncitas">
         <button type="su" class="btn btn-primary col-md-2 boton" >Guardar</button>
         <button type="button" class="btn btn-secondary col-md-2 boton" onclick="location.href = 'http://localhost:8080/ProyectoConstruccion/View/Cita/indexc.jsp'">Volver</button>

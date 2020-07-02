@@ -45,8 +45,7 @@
                 <td>     
                     <div class="row">
                         <div class="col-md">
-                            <form class="form-inline my-2 my-lg-0" action="http://localhost:8080/ProyectoConstruccion/View/Cita/Estadocita.jsp" method="get">
-
+                            <form class="form-inline my-2 my-lg-0" action="http://localhost:8080/ProyectoConstruccion/View/Cita/Estadocita.jsp" method="GET">
                                 <input type="hidden" name="estado" id="estado" value="<%out.println(Consulta.getString("INT_ID_CITAS"));%>">
                                 <button class="btn btn-primary my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="top" title="Cambiar estado" onclick="myFunction()">
                                     <i class="fa fa-sign-out" style="color:black"></i>

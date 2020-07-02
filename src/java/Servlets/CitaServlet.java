@@ -54,8 +54,9 @@ public class CitaServlet extends HttpServlet {
         } else if (opc == 2) {
             int IdCita = Integer.parseInt(request.getParameter("IdCita"));
             String estadocita = request.getParameter("estadocita");
+            String descripcion = request.getParameter("descripcion");
             try {
-                String mensaje = c.modificarEstado(IdCita, estadocita);
+                String mensaje = c.modificarEstado(IdCita, estadocita, descripcion);
 
                 request.getSession().setAttribute("respuesta", "correcto2");
                 request.getRequestDispatcher("View/Cita/indexc.jsp").forward(request, response);
